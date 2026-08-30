@@ -1,157 +1,941 @@
-# Skylark Intelligence | Monday.com Business Intelligence Agent
+# Skylark Intelligence
 
-> **Founder-level business intelligence from Monday.com Deals and Work Orders boards.**
+### Monday.com Business Intelligence Agent for Sales & Operations
 
-Skylark Intelligence is a production-minded, full-stack Business Intelligence (BI) application built for Skylark Drones. It connects directly to Monday.com GraphQL API to deliver verified quantitative insights, executive briefings, data-quality audits, and natural language analytics across sales pipeline and operational fulfillment.
+> **A production-ready Business Intelligence application that turns Monday.com sales and operational data into verified, actionable business insights.**
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://skylark-intelligence-fr31.onrender.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/Manojdokala/skylark-intelligence)
 
 ---
 
-## 🏗️ Architecture
+## 🚀 Live Application
 
+**Live Demo:**  
+https://skylark-intelligence-fr31.onrender.com/
+
+**Source Code:**  
+https://github.com/Manojdokala/skylark-intelligence
+
+---
+
+## 📌 Overview
+
+**Skylark Intelligence** is a full-stack Business Intelligence application designed to provide leadership and business teams with a conversational interface for analyzing sales pipeline and operational fulfillment data.
+
+The application connects to **Monday.com** and transforms business records from Deals and Work Orders boards into structured, explainable insights.
+
+Instead of manually inspecting boards or spreadsheets, users can ask natural-language questions such as:
+
+- How is our pipeline looking?
+- What is the total pipeline value?
+- Show me pipeline by sector.
+- What are our current work-order statuses?
+- How much revenue has been billed?
+- Compare pipeline with operational workload.
+- Which sectors need attention?
+
+The system combines:
+
+- Conversational business intelligence
+- Monday.com GraphQL integration
+- Deterministic analytics
+- Data normalization
+- Data-quality auditing
+- Evidence-based responses
+- Executive leadership summaries
+- Responsive React user interface
+
+A central design principle of the application is:
+
+> **Business metrics are calculated by deterministic backend logic rather than allowing an AI model to invent or independently calculate business figures.**
+
+---
+
+# ✨ Key Features
+
+## 1. Conversational Business Intelligence
+
+Users can interact with the system using natural-language business questions.
+
+### Example Questions
+
+```text
+How is our pipeline looking?
+
+What is the total pipeline value?
+
+Show me pipeline by sector.
+
+What are our work order statuses?
+
+How much revenue has been billed?
+
+Compare pipeline with operational workload.
+
+Which sectors need attention?
 ```
-┌─────────────────────────────────────────────────────────┐
-│                     React Frontend                      │
-│ (Conversational Chat | Leadership Brief | Data Quality │
-│  Connection Status | "Last Refreshed" Bar)              │
-└──────────────────────────┬──────────────────────────────┘
-                           │ REST API (/api/chat, /api/monday/status, etc.)
-┌──────────────────────────▼──────────────────────────────┐
-│                    Express Backend API                  │
-├─────────────────────────────────────────────────────────┤
-│ 1. Intent Detection & Query Router                      │
-│ 2. 100% Deterministic Analytics Engine (Zero LLM math)  │
-│ 3. Data Normalization & Data Quality Audit Layer        │
-│ 4. Monday.com GraphQL API Client                        │
-│    (With xlsx parser for local fixture fallback)        │
-│ 5. Gemini LLM Formatter (With graceful fallback)        │
-└──────────────────────────┬──────────────────────────────┘
-                           │ GraphQL Query (https://api.monday.com/v2)
-┌──────────────────────────▼──────────────────────────────┐
-│                  Monday.com API / Data                  │
-│         (Deals Board & Work Orders Board)              │
-└─────────────────────────────────────────────────────────┘
+
+The application interprets the user's analytical intent and routes the request to the appropriate backend analytics logic.
+
+---
+
+## 2. Deterministic Quantitative Analytics
+
+The application is designed so that important business calculations are performed by backend TypeScript logic.
+
+This includes:
+
+- Pipeline totals
+- Deal counts
+- Sector-level analysis
+- Work-order counts
+- Billed amounts
+- Aggregations
+- Ratios
+- Business comparisons
+- Data-quality metrics
+
+The system follows the principle:
+
+> **Calculate first. Explain second.**
+
+This helps prevent fabricated or unsupported business figures.
+
+---
+
+## 3. Monday.com Integration
+
+Skylark Intelligence integrates with the **Monday.com GraphQL API** to retrieve business data from configured boards.
+
+The integration supports the application's:
+
+- Deals data
+- Work Orders data
+- Board information
+- Board records
+- Business metrics
+- Operational analysis
+
+### Configured Boards
+
+**Deals Board**
+
+https://manojdokala215s-team.monday.com/boards/5030963217
+
+**Work Orders Board**
+
+https://manojdokala215s-team.monday.com/boards/5030962938
+
+> These Monday.com board links may require appropriate account permissions to access.
+
+---
+
+## 4. Data Quality Auditing
+
+Data quality is treated as an important part of the analytics workflow rather than being ignored.
+
+The system can identify issues such as:
+
+- Missing values
+- Missing dates
+- Missing deal values
+- Invalid numeric values
+- Incomplete records
+- Inconsistent sector values
+- Other normalization issues
+
+When required source data is unavailable, the system avoids silently fabricating a value.
+
+For example:
+
+```text
+Metric cannot be calculated due to missing [Field Name].
+```
+
+This makes analytical limitations visible to the user.
+
+---
+
+## 5. Source & Evidence Information
+
+Analytical responses are designed to provide context around the result.
+
+Depending on the analysis, the interface can surface information such as:
+
+- Source board
+- Records analyzed
+- Valid records
+- Calculated metrics
+- Refresh information
+- Data-quality considerations
+
+This provides greater transparency and makes business insights easier to verify.
+
+---
+
+## 6. Leadership Brief
+
+The application provides an executive-oriented leadership brief for quickly understanding the organization's current business position.
+
+The brief can summarize areas such as:
+
+### Sales
+
+- Pipeline position
+- Sector performance
+- Deal activity
+- Sales opportunities
+
+### Operations
+
+- Work-order workload
+- Operational status
+- Fulfillment activity
+
+### Strategic Signals
+
+- Strong-performing sectors
+- Areas requiring attention
+- Pipeline versus operational workload
+
+### Risks
+
+- Data-quality issues
+- Missing information
+- Potential gaps between sales pipeline and execution
+
+The goal is to provide leadership with concise, decision-oriented information without requiring manual inspection of individual records.
+
+---
+
+## 7. Interactive Ambiguity Resolution
+
+The application can handle broad or ambiguous questions by guiding the user toward a more specific analysis.
+
+For example:
+
+```text
+User:
+How is our pipeline?
+
+Application:
+What would you like to analyze?
+
+[Total Pipeline Value]
+[Pipeline by Sector]
+[Pipeline by Status]
+[Pipeline Analysis]
+```
+
+This improves the conversational experience while reducing unsupported assumptions.
+
+---
+
+## 8. Secure Server-Side Credentials
+
+Sensitive API credentials are kept on the server and configured through environment variables.
+
+Credentials such as:
+
+```text
+MONDAY_API_TOKEN
+```
+
+are not intended to be exposed through the frontend.
+
+The repository uses:
+
+```text
+.env
+```
+
+for local secrets and:
+
+```text
+.env.example
+```
+
+as a safe configuration template.
+
+The real `.env` file is excluded from source control through `.gitignore`.
+
+> **Never commit API tokens, passwords, or other private credentials to GitHub.**
+
+---
+
+# 🏗️ System Architecture
+
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                     React Frontend                           │
+│                                                              │
+│  Conversational Chat │ Leadership Brief │ Data Quality       │
+│  Connection Status    │ Evidence Information │ Navigation    │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+                               │ REST API
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│                   Express Backend API                         │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Intent Detection & Query Routing                            │
+│                                                              │
+│  Deterministic Analytics Engine                              │
+│                                                              │
+│  Data Normalization & Quality Validation                     │
+│                                                              │
+│  Monday.com GraphQL API Integration                          │
+│                                                              │
+│  Business Insight & Response Processing                      │
+│                                                              │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+                               │ GraphQL API
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│                         Monday.com                           │
+│                                                              │
+│               Deals Board │ Work Orders Board                │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ✨ Features
+# 🔄 Data Flow
 
-- 💬 **Conversational BI Interface**: Ask natural language business questions ("How's our pipeline looking for the energy sector?", "Compare pipeline with operational workload", etc.).
-- 🎯 **100% Deterministic Quantitative Math**: All business metrics, pipeline totals, sector breakdowns, and billed amounts are calculated strictly by backend TypeScript code. No LLM hallucinations or invented figures.
-- 🔗 **Monday.com GraphQL API Integration**: Directly fetches board schemas and items from `https://api.monday.com/v2`.
-- 📁 **Local Fixture Fallback Mode**: Uses `xlsx` npm package to load Excel dataset fixtures (`Deal funnel Data.xlsx` and `Work_Order_Tracker Data.xlsx`) if Monday API credentials are not yet configured.
-- 🔒 **Server-Side Security**: `MONDAY_API_TOKEN` is strictly stored on the server and is **NEVER** returned, displayed, or editable on the frontend.
-- 📊 **Source & Evidence Drawer**: Every analytical response explicitly displays the board queried, total records analyzed, valid records count, calculated metrics, and last refreshed timestamp.
-- 🛡️ **First-Class Data Quality Audit**: Calculates board field completeness percentages, missing close dates, unstated deal values, and explicitly communicates data caveats.
-- 📋 **Leadership Brief Generator**: 1-click executive update generator synthesizing sales, ops, strategic signals, and risk warnings with a copy-to-clipboard button.
-- ❓ **Interactive Ambiguity Resolution**: Automatically detects vague queries (e.g., "How is our pipeline?") and presents clickable clarification options.
-- ⚡ **Graceful Offline / No-LLM Fallback**: Operates smoothly even if Gemini API is unconfigured or unavailable by rendering verified deterministic metrics.
+The application follows a structured data-processing pipeline:
+
+```text
+Monday.com
+     │
+     ▼
+GraphQL API
+     │
+     ▼
+Monday.com Service
+     │
+     ▼
+Raw Business Data
+     │
+     ▼
+Data Normalization
+     │
+     ▼
+Data Quality Validation
+     │
+     ▼
+Deterministic Analytics
+     │
+     ▼
+Evidence / Metrics Package
+     │
+     ▼
+Business Response
+     │
+     ▼
+React Frontend
+```
 
 ---
 
-## 🛠️ Tech Stack
+# 🧠 Analytics Architecture
 
-- **Frontend**: React 18, TypeScript, Vite, TailwindCSS, Lucide Icons
-- **Backend**: Express.js, TypeScript, Node.js v26
-- **Data Parsing & Integration**: `xlsx` npm package, Fetch API (Monday.com v2 GraphQL)
-- **AI Synthesis**: `@google/generative-ai` (Optional Gemini 1.5 Flash formatter)
-- **Testing**: Python `unittest`, OpenPyXL verification suite
+The analytics workflow is designed around separation between **data retrieval**, **calculation**, and **presentation**.
+
+## Step 1 — User Query
+
+The user enters a natural-language business question.
+
+Example:
+
+```text
+Show me pipeline by sector.
+```
+
+## Step 2 — Intent Detection
+
+The backend determines what type of analysis is required.
+
+Example:
+
+```text
+PIPELINE_BY_SECTOR
+```
+
+## Step 3 — Data Retrieval
+
+The appropriate Monday.com data is retrieved through the backend integration.
+
+## Step 4 — Data Normalization
+
+Raw values are cleaned and converted into consistent formats.
+
+## Step 5 — Deterministic Calculation
+
+The analytics service performs the requested calculation using backend code.
+
+## Step 6 — Evidence Packaging
+
+Relevant information is assembled, including:
+
+- Source
+- Record counts
+- Valid records
+- Calculated metrics
+- Data-quality information
+- Refresh information
+
+## Step 7 — Frontend Presentation
+
+The final result is displayed through the React interface in a business-friendly format.
 
 ---
 
-## 🔑 Monday.com Setup & Configuration
+# 🧹 Data Handling & Normalization
 
-1. Log into your **Monday.com** account.
-2. Create or import your **Deals** and **Work Orders** boards.
-3. Obtain your Personal Access Token from **Monday.com -> Admin -> API**.
-4. Note your Deals Board ID and Work Orders Board ID from the URL (e.g. `https://work.monday.com/boards/1234567890`).
-5. Copy `.env.example` to `.env` in the root project directory:
+The backend normalization layer is designed to handle messy real-world business data.
 
-```bash
+## Null & Missing Values
+
+Common representations such as:
+
+```text
+""
+"N/A"
+"NA"
+"-"
+"unknown"
+"null"
+```
+
+can be normalized into clean `null` values where appropriate.
+
+## Date Standardization
+
+The normalization layer handles different date representations and standardizes valid dates into a consistent format.
+
+Example:
+
+```text
+YYYY-MM-DD
+```
+
+Excel serial date values can also be handled during normalization.
+
+## Currency & Numeric Parsing
+
+The system handles common formatting issues such as:
+
+```text
+Rs.
+Commas
+Whitespace
+NaN
+```
+
+This allows business values to be safely converted into numbers before calculations are performed.
+
+## Sector Standardization
+
+Sector values can be normalized into consistent business categories where required.
+
+Examples include:
+
+```text
+Mining
+Powerline
+Service + Spectra
+Pure Service
+Infrastructure
+```
+
+## No Metric Fabrication
+
+If a required field is unavailable in the source data, the system communicates the limitation instead of inventing a number.
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide Icons
+
+## Backend
+
+- Node.js
+- Express.js
+- TypeScript
+
+## Data Integration
+
+- Monday.com GraphQL API
+- Fetch API
+- XLSX data parsing
+- Local dataset fixtures
+
+## Testing
+
+- Python
+- Python `unittest`
+- OpenPyXL
+
+---
+
+# 📂 Project Structure
+
+```text
+skylark-intelligence/
+│
+├── server/
+│   ├── index.ts
+│   ├── routes/
+│   │   └── api.ts
+│   │
+│   └── services/
+│       ├── agentService.ts
+│       ├── analyticsService.ts
+│       ├── mondayService.ts
+│       └── normalizationService.ts
+│
+├── src/
+│   ├── App.tsx
+│   │
+│   ├── components/
+│   │   ├── ChatInterface.tsx
+│   │   ├── ConnectionView.tsx
+│   │   ├── DataQualityView.tsx
+│   │   ├── Header.tsx
+│   │   ├── LeadershipBrief.tsx
+│   │   └── Navigation.tsx
+│   │
+│   ├── index.css
+│   └── main.tsx
+│
+├── tests/
+│   └── run_tests.py
+│
+├── .env.example
+├── .gitignore
+├── DECISION_LOG.md
+├── README.md
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+├── tsconfig.server.json
+└── vite.config.ts
+```
+
+---
+
+# 🔐 Environment Configuration
+
+Create a `.env` file in the project root for local development.
+
+Example:
+
+```env
 PORT=5000
+
 MONDAY_API_TOKEN=your_personal_access_token
+
 MONDAY_DEALS_BOARD_ID=1234567890
+
 MONDAY_WORK_ORDERS_BOARD_ID=0987654321
-GEMINI_API_KEY=optional_gemini_api_key
 ```
+
+Do not use real credentials in the README or source code.
+
+The repository provides `.env.example` as the configuration template.
 
 ---
 
-## 🚀 Local Setup & Running
+# 🔑 Monday.com Setup
 
-### Prerequisites
-- Node.js (v18+)
-- npm (v9+)
-- Python (for test suite)
+To connect the application to Monday.com:
 
-### Installation
+1. Log in to your Monday.com account.
+2. Open the Deals and Work Orders boards.
+3. Obtain the required Monday.com API credentials.
+4. Obtain the Board IDs.
+5. Add the credentials and Board IDs to your `.env` file.
+6. Start the application.
+
+### Deals Board
+
+https://manojdokala215s-team.monday.com/boards/5030963217
+
+### Work Orders Board
+
+https://manojdokala215s-team.monday.com/boards/5030962938
+
+---
+
+# 🚀 Local Development
+
+## Prerequisites
+
+Install:
+
+- Node.js 18+
+- npm 9+
+- Python 3+
+- Git
+
+## Clone the Repository
 
 ```bash
-# 1. Install dependencies
+git clone https://github.com/Manojdokala/skylark-intelligence.git
+cd skylark-intelligence
+```
+
+## Install Dependencies
+
+```bash
 npm install
+```
 
-# 2. Build production assets & compile TypeScript server
+## Configure Environment Variables
+
+Create:
+
+```text
+.env
+```
+
+and configure the required Monday.com values.
+
+## Build the Application
+
+```bash
 npm run build
+```
 
-# 3. Run development mode (Concurrent Frontend + Backend)
+## Start Development Mode
+
+```bash
 npm run dev
+```
 
-# 4. Start production server
+## Start the Production Server
+
+```bash
 npm start
 ```
 
-Access the application in your browser at `http://localhost:3000` (Dev) or `http://localhost:5000` (Production).
+---
+
+# 🌐 Deployment
+
+The application is deployed using **Render** and connected to the GitHub repository.
+
+### Repository
+
+https://github.com/Manojdokala/skylark-intelligence
+
+### Production Service
+
+https://skylark-intelligence-fr31.onrender.com/
+
+The deployed service has been verified to start successfully and expose the application through the Render URL.
+
+The deployment configuration shown for the project uses:
+
+```text
+Branch:
+master
+
+Build Command:
+npm install; npm run build
+
+Start Command:
+npm run start
+```
+
+Environment variables are configured on the deployment platform rather than committed to the repository.
 
 ---
 
-## 🧪 Testing
+# 🧪 Testing
 
-Execute the automated verification suite:
+The repository includes a Python-based verification suite.
+
+Run:
 
 ```bash
 npm test
-# Or run directly: py tests/run_tests.py
 ```
 
-The test suite validates:
-1. Presence and integrity of raw Excel dataset files
-2. Deals board schema and key column existence
-3. Work Orders board schema and key column existence
-4. Deterministic valuation math across 165 valid deal records
-5. Cross-board overlapping sector dimensions (`Mining`, `Powerline`, `Renewables`, `Railways`, `Construction`, `Others`)
+Or run the test file directly:
+
+```bash
+python tests/run_tests.py
+```
+
+The testing layer is intended to verify important project and dataset assumptions, including:
+
+- Dataset availability
+- Dataset integrity
+- Deals board structure
+- Work Orders board structure
+- Required fields
+- Deterministic business calculations
+- Cross-board sector dimensions
 
 ---
 
-## 🧹 Data Handling & Normalization
+# 📊 Supported Business Analysis
 
-The backend `normalizationService` cleans messy real-world data:
-- **Null & Missing Values**: Normalizes `""`, `"N/A"`, `"NA"`, `"-"`, `"unknown"`, `"null"` into clean `null`.
-- **Date Standardizing**: Parses ISO dates, standardizes timestamps to `YYYY-MM-DD`, and resolves Excel serial timestamps (e.g., `45000`).
-- **Currency & Numeric Parsing**: Strips `Rs.`, commas, and whitespace; handles `NaN` values safely.
-- **Sector Standardization**: Groups sector variants into standard categories (`Mining`, `Powerline`, `Service + Spectra`, `Pure Service`, `Infrastructure`).
-- **No Metric Fabrication**: If a required metric field is missing in raw source data, the app explicitly communicates: *"Metric cannot be calculated due to missing [Field Name]"*.
+## Sales Pipeline
+
+Example questions:
+
+```text
+What is the total pipeline value?
+
+How many deals are in the pipeline?
+
+Show pipeline by sector.
+
+Which sectors have the largest pipeline?
+
+How is our pipeline distributed?
+```
+
+## Work Orders
+
+Example questions:
+
+```text
+What are our current work order statuses?
+
+How many work orders are active?
+
+Show operational workload by sector.
+
+What is the distribution of work order statuses?
+```
+
+## Revenue
+
+Example questions:
+
+```text
+How much revenue has been billed?
+
+What is the billed amount by sector?
+
+Which sectors contribute the most billed revenue?
+```
+
+## Cross-Board Analysis
+
+Example questions:
+
+```text
+Compare pipeline with operational workload.
+
+Which sectors have strong pipeline but low operational workload?
+
+Which sectors need attention?
+
+Compare sales activity with fulfillment activity.
+```
 
 ---
 
-## 🤖 AI Architecture & Deterministic Safeguards
+# 📈 Data Quality & Reliability
 
-Skylark Intelligence employs a **hybrid AI architecture**:
-1. **Query Intent Detection**: Analyzes natural language input and routes to deterministic analytics functions.
-2. **Deterministic Computation**: 100% of numerical calculations (sums, averages, breakdowns, ratios) are executed by TypeScript code.
-3. **Evidence Packaging**: Assembles metadata (board name, record count, timestamp).
-4. **Optional LLM Formatting**: Gemini API formats verified results into executive summaries. If Gemini is unavailable, the system falls back to structured deterministic response cards.
+A key objective of Skylark Intelligence is to make business analytics transparent.
+
+The application distinguishes between:
+
+```text
+Verified / Calculated Result
+```
+
+and:
+
+```text
+Result affected by incomplete source data
+```
+
+This approach helps users understand not only **what the result is**, but also **how trustworthy the underlying data is**.
 
 ---
 
-## 📌 Assumptions & Limitations
+# 📋 Leadership Decision Support
 
-- **Assumptions**: Deals and Work Orders boards share common industry categories (`Sector`).
-- **Limitations**: Direct Deal ID foreign keys are omitted in the initial Excel dataset fixture; cross-board analysis relies on sector-level mapping.
+The Leadership Brief is intended to help decision-makers quickly identify:
+
+- Sales opportunities
+- Operational workload
+- Sector-level performance
+- Strategic signals
+- Potential risks
+- Data-quality concerns
+
+Rather than presenting raw records alone, the application focuses on converting operational data into concise business signals.
 
 ---
 
-## 🔮 Future Improvements
+# 🛡️ Design Principles
 
-- Automated Monday.com Webhooks for real-time push sync.
-- Custom board column mapping UI for dynamic schema changes.
-- Downloadable PDF executive reports.
+## Accuracy
+
+Business metrics should be derived from the underlying source data.
+
+## Deterministic Calculations
+
+Numerical calculations are handled by backend analytics logic.
+
+## Transparency
+
+Responses provide supporting context wherever applicable.
+
+## Data Quality
+
+Missing or inconsistent data is surfaced rather than silently ignored.
+
+## Security
+
+Sensitive API credentials remain server-side.
+
+## Separation of Concerns
+
+The application separates:
+
+```text
+Frontend
+   ↓
+API Layer
+   ↓
+Business Logic
+   ↓
+Data Integration
+   ↓
+Source Data
+```
+
+## Graceful Failure
+
+Core deterministic analytics should remain useful even when optional external services are unavailable.
+
+---
+
+# 📝 Decision Log
+
+The repository includes:
+
+```text
+DECISION_LOG.md
+```
+
+which documents important implementation decisions and architectural considerations made during development.
+
+---
+
+# ⚠️ Assumptions & Limitations
+
+## Assumptions
+
+- The Deals and Work Orders boards contain compatible business dimensions such as `Sector`.
+- Required fields are available for the requested analysis.
+- Source data is sufficiently complete for the requested metric.
+
+## Limitations
+
+- Cross-board analysis depends on common dimensions between the available datasets.
+- The initial Excel fixture does not provide direct Deal ID foreign-key relationships for every cross-board analysis.
+- Some cross-board comparisons therefore rely on sector-level mapping rather than direct record-level relationships.
+- Data-quality issues in the source system can affect the completeness of analytical results.
+- Monday.com board access requires appropriate permissions.
+
+---
+
+# 🔮 Future Improvements
+
+Potential future enhancements include:
+
+- Real-time Monday.com webhook synchronization
+- Automated data refresh
+- Dynamic board-column mapping
+- Historical KPI tracking
+- Advanced trend analysis
+- Improved cross-board relationships
+- Downloadable PDF executive reports
+- Custom analytics dashboards
+- Role-based access control
+- Enhanced audit trails
+- Advanced business forecasting
+- More configurable executive reporting
+
+---
+
+# 🔗 Project Links
+
+### Live Application
+
+https://skylark-intelligence-fr31.onrender.com/
+
+### GitHub Repository
+
+https://github.com/Manojdokala/skylark-intelligence
+
+### Monday.com Deals Board
+
+https://manojdokala215s-team.monday.com/boards/5030963217
+
+### Monday.com Work Orders Board
+
+https://manojdokala215s-team.monday.com/boards/5030962938
+
+---
+
+# 🎯 Project Objective
+
+Skylark Intelligence is designed to provide a reliable business intelligence layer over sales and operational data stored in Monday.com.
+
+Instead of requiring leadership teams to manually inspect boards, spreadsheets, or individual records, the application provides a conversational interface that converts business questions into structured, explainable analytical insights.
+
+The project prioritizes:
+
+**Accuracy → Transparency → Data Quality → Security → Actionable Insights**
+
+---
+
+# 👨‍💻 Project Information
+
+**Project:** Skylark Intelligence  
+**Purpose:** Monday.com Business Intelligence Agent  
+**Domain:** Business Intelligence / Sales Analytics / Operations Analytics  
+**Frontend:** React + TypeScript  
+**Backend:** Node.js + Express + TypeScript  
+**Data Source:** Monday.com  
+**Deployment:** Render
+
+### Repository
+
+https://github.com/Manojdokala/skylark-intelligence
+
+### Live Application
+
+https://skylark-intelligence-fr31.onrender.com/
+
+---
+
+## ⭐ If you find this project useful
+
+Feel free to explore the repository, review the architecture, and try the live application.
+
+**Skylark Intelligence — turning business data into actionable intelligence.**
