@@ -1,0 +1,22 @@
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build Outputs
+dist/
+dist-server/
+*.tsbuildinfo
+
+# Logs & OS Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
